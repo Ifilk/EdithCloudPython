@@ -50,7 +50,7 @@ async def event_generator(r: Request):
 # 统一响应类
 class CResponse:
     def __init__(self, code=200, **kwargs):
-        self.r = {'timestamp': datetime.now().timestamp(),
+        self.r = {'timestamp': str(datetime.now().timestamp()).replace('.', ''),
                   'code': 200,
                   'data': kwargs}
 
