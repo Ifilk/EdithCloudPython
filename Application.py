@@ -34,7 +34,7 @@ class DtoExample(BaseModel):
 # 创建路由
 @app.post('/stream')
 async def streamPost(request: Request, dto: DtoExample):
-    print(f'{id}')
+    print(f'{dto.id}')
     return StreamingResponse(event_generator(request), media_type='text/event-stream')
 
 
