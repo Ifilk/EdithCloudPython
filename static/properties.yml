@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: edith-cloud-gateway
+  config:
+    import:
+      - nacos:redis?refresh=true&group=DEFAULT_GROUP
+      - nacos:satoken?refresh=true&group=DEFAULT_GROUP
+  cloud:
+    nacos:
+      server-addr: 60.205.236.106:8848
+      username: nacos
+      password: nacos
+      discovery:
+        ip:
+      config:
+        file-extension: yaml
+        namespace: public
