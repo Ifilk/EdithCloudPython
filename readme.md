@@ -1,3 +1,8 @@
+安装依赖
+```cmd
+pip install uvicorn, fastapi, pydantic, requests, pyyaml, python-multipart, blobfile
+```
+
 ### Nacos配置中心
 python 3.8
 

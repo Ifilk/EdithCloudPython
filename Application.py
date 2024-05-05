@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import uvicorn as uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.responses import StreamingResponse
@@ -31,11 +31,19 @@ class DtoExample(BaseModel):
     id: str
 
 
-# 创建路由
-@app.post('/stream')
-async def streamPost(request: Request, dto: DtoExample):
-    print(f'{dto.id}')
+@app.post('/contact')
+async def uploadAudioFile(request: Request, file: UploadFile = File(...)):
+    contents = await file.read()
+    with open("test/" + file.filename, "wb") as f:
+        f.write(contents)
     return StreamingResponse(event_generator(request), media_type='text/event-stream')
+
+
+# 创建路由
+# @app.post('/stream')
+# async def streamPost(request: Request, dto: DtoExample):
+#     print(f'{dto.id}')
+#     return StreamingResponse(event_generator(request), media_type='text/event-stream')
 
 
 # 以下是EventStream事件流推送的事例
